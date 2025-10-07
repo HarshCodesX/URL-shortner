@@ -18,12 +18,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: false,
         //add gravatar as default
-        default: function(){
-            return getGravatarUrl(this.email);
-        },
+        default: "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp"
     },   
 
-    //we will not be doing this as user can create a lot of links andthose links will be stored inside a document, and space is limited of a document (16 mb)
+    //we will not be doing this as user can create a lot of links and those links will be stored inside a document, and space is limited of a document (16 mb)
     // links: [
     //     {
     //         type: mongoose.Schema.Types.ObjectId,
@@ -31,11 +29,6 @@ const userSchema = new mongoose.Schema({
     //     }
     // ]
 });
-
-function getGravatarUrl(email){
-    const hash = require('crypto').createHash('md5').update(email.trim().toLowerCase()).digest('hex');
-    return `https://www.gravatar.com/avatar/${hash}?d=mp`;
-}
 
 const User = mongoose.model("User", userSchema);
 export default User;

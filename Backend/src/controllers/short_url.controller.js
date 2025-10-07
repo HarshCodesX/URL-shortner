@@ -1,11 +1,18 @@
 import { getShortUrl } from "../dao/short_url.js";
-import { createShortUrlWithoutUser } from "../services/short_url.service.js";
 import wrapAsync from "../utils/tryCatchWraper.js";
+import { createShortUrlWithUser, createShortUrlWithoutUser } from "../services/short_url.service.js";
 
 export const createShortUrl = wrapAsync(
     async (req, res) => {
     const {url} = req.body;
     const shortUrl = await createShortUrlWithoutUser(url);
+    res.status(200).json({shortUrl: process.env.App_URL + shortUrl});
+});
+
+export const createShortUrlAuth = wrapAsync(
+    async (req, res) => {
+    const {url} = req.body;
+    const shortUrl = await createShortUrlWithUser(url, req.user._id);
     res.status(200).json({shortUrl: process.env.App_URL + shortUrl});
 });
 
@@ -16,3 +23,9 @@ export const redirectFromShortUrl = wrapAsync(
     if(!url) throw new Error("Short url not found");
     res.redirect(url.full_url);
 });
+
+export const createCustomShortUrl = wrapAsync(async (req, res) => {
+    const {url, slug} = req.body;
+    const shortUrl = await createShortUrlWithoutUser(url, slug);
+    res.status(200).json({shortUrl: process.env.App_URL + shortUrl});
+})
