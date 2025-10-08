@@ -7,6 +7,7 @@ export const createShortUrl = wrapAsync(
     const {url} = req.body;
     let shortUrl;
     if(req.user){
+        console.log("user is logged in, printed inside short_url controller");
         shortUrl = await createShortUrlWithUser(url, req.user._id);
     }
     else{

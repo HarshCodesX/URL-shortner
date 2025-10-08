@@ -3,7 +3,6 @@ import { ConflictError } from "../utils/errorHandler.js";
 
 export const saveShortUrl = async (shortUrl, longUrl, userId) => {
     try {
-        console.log(userId);
         const newUrl = new urlSchema({
             full_url: longUrl,
             short_url: shortUrl
