@@ -3,12 +3,13 @@ import { ConflictError } from "../utils/errorHandler.js";
 
 export const saveShortUrl = async (shortUrl, longUrl, userId) => {
     try {
+        console.log(userId);
         const newUrl = new urlSchema({
             full_url: longUrl,
             short_url: shortUrl
         });
-        if(userId){ //why do we have this if-block here
-            newUrl.user_id = userId;
+        if(userId){
+            newUrl.user = userId;
         }
         await newUrl.save();
     } catch (error) {

@@ -5,14 +5,13 @@ import { createShortUrlWithUser, createShortUrlWithoutUser } from "../services/s
 export const createShortUrl = wrapAsync(
     async (req, res) => {
     const {url} = req.body;
-    const shortUrl = await createShortUrlWithoutUser(url);
-    res.status(200).json({shortUrl: process.env.App_URL + shortUrl});
-});
-
-export const createShortUrlAuth = wrapAsync(
-    async (req, res) => {
-    const {url} = req.body;
-    const shortUrl = await createShortUrlWithUser(url, req.user._id);
+    let shortUrl;
+    if(req.user){
+        shortUrl = await createShortUrlWithUser(url, req.user._id);
+    }
+    else{
+        shortUrl = await createShortUrlWithoutUser(url);
+    }
     res.status(200).json({shortUrl: process.env.App_URL + shortUrl});
 });
 
