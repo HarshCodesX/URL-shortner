@@ -4,14 +4,13 @@ import { createShortUrlWithUser, createShortUrlWithoutUser } from "../services/s
 
 export const createShortUrl = wrapAsync(
     async (req, res) => {
-    const {url} = req.body;
+    const data = req.body;
     let shortUrl;
     if(req.user){
-        console.log("user is logged in, printed inside short_url controller");
-        shortUrl = await createShortUrlWithUser(url, req.user._id);
+        shortUrl = await createShortUrlWithUser(data.url, req.user._id, data.slug);
     }
     else{
-        shortUrl = await createShortUrlWithoutUser(url);
+        shortUrl = await createShortUrlWithoutUser(data.url);
     }
     res.status(200).json({shortUrl: process.env.App_URL + shortUrl});
 });
