@@ -3,7 +3,8 @@ import axios, { isAxiosError } from "axios";
 
  const axiosInstance = axios.create({
     baseURL: "http://localhost:3000",
-    timeout: 7000 //if server didnt responded in 7 sec, it will throw an error "server time out"
+    timeout: 7000, //if server didnt responded in 7 sec, it will throw an error "server time out"
+    withCredentials: true
  })
 
  //request interceptor
