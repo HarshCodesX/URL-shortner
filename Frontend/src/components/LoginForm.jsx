@@ -1,11 +1,17 @@
-import React, {useState} from "react";
+import {useState} from "react";
 import { loginUser } from "../api/user.api";
+
+//redux
+import { useSelector } from "react-redux";
 
 const LoginForm = ({state}) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+
+    const auth = useSelector((state) => state.auth);
+    console.log(auth);
 
     const handleSubmit = async (e) => {
         setLoading(true);
