@@ -1,8 +1,9 @@
 import {useState} from "react";
 import { loginUser } from "../api/user.api";
+import { login } from "../store/slice/authSlice.js";
 
 //redux
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 const LoginForm = ({state}) => {
     const [email, setEmail] = useState("");
@@ -11,6 +12,7 @@ const LoginForm = ({state}) => {
     const [error, setError] = useState("");
 
     const auth = useSelector((state) => state.auth);
+    const dispatch = useDispatch();
     console.log(auth);
 
     const handleSubmit = async (e) => {
@@ -19,8 +21,8 @@ const LoginForm = ({state}) => {
 
         try {
             const data = await loginUser(email, password);
+            dispatch(login(data.user));
             setLoading(false);
-            console.log(data);
         } 
         catch (error) {
             setLoading(false);

@@ -5,8 +5,7 @@ export const findUserByEmail = async (email) => {
 }
 
 export const findUserByEmailAndPassword = async (email) => {
-    return await User.findOne({email}).select("+password"); 
-    //password was being sent form the BE, so we aaded "select: false" in user model, so here we are searching with and selecting password too
+    return await User.findOne({email}).select('+password');
 }
 
 export const findUserById = async (id) => {
