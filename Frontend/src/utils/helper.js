@@ -10,3 +10,5 @@ export const checkAuth = ({context}) => {
         throw redirect({to: "/auth"});
     }
 }
+
+//remove this line of comment
