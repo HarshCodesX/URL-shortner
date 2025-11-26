@@ -17,3 +17,7 @@ export const createUser = async (name, email, password) => {
     await newUser.save();
     return newUser;
 }
+
+export const getAllUserUrls = async (id) => {
+    return await urlModel.find({user: id});
+}
