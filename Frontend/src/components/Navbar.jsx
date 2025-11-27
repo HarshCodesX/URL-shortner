@@ -11,22 +11,6 @@ const Navbar = () => {
                         URL Shortner
                     </Link>
                 </div>
-
-                {/* Right side - Auth buttons */}
-                {/* <div className='flex items-center'>
-                    {isLoggedIn ? (
-                        <div className='flex items-center space-x-4'>
-                            <span className='text-gray-700'>Welcome, {userName || 'User'}</span>
-                            <button className='bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md text-sm font-medium'>Logout</button>
-                        </div>
-                    ) : (
-                        <>
-                        <Link to="/auth" className='bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium'>
-                            Login
-                        </Link>
-                        </>
-                    )}
-                </div> */}
             </div>
         </div>
     </nav>
