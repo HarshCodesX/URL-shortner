@@ -1,13 +1,15 @@
 import {Link} from "@tanstack/react-router";
 import { useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { logoutUser } from "../api/user.api";
 import { logout } from "../store/slice/authSlice.js";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [clickedOnLogin, setClickedOnLogin] = useState(false);
+  const [error, setError] = useState("");
   const { isAuthenticated } = useSelector((state) => state.auth);
   
   //handle login function
@@ -54,7 +56,7 @@ const Navbar = () => {
                 duration-200 
                 hover:shadow 
                 cursor-pointer
-              " onClick={() => {handleLogout}}>Logout</button>
+              " onClick={handleLogout}>Logout</button>
                 ) : (
                   <button onClick={handleLogin} className="
                 px-6 py-3
