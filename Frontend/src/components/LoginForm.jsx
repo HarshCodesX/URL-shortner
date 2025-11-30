@@ -15,7 +15,6 @@ const LoginForm = ({state}) => {
 
     const auth = useSelector((state) => state.auth);
     const dispatch = useDispatch();
-    console.log(auth);
 
     const handleSubmit = async (e) => {
         setLoading(true);

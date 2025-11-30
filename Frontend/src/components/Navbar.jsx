@@ -27,7 +27,6 @@ const Navbar = () => {
     try {
       const data = await logoutUser();
       dispatch(logout());
-      console.log(data);
       navigate({ to: "/" });
     } catch (error) {
       setError(error.message || "Logout failed, Please try again");
